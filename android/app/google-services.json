@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "996710448532",
+    "project_id": "yijueun-a1290",
+    "storage_bucket": "yijueun-a1290.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:996710448532:android:7d9078b47481f7e4b22381",
+        "android_client_info": {
+          "package_name": "com.example.yijueun"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "996710448532-9s9ir9ccifj3qnfnkv1tjhl78tdo7ih3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAv3JDngYBonmrZexrUzteE3MhhkNzjbNI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "996710448532-9s9ir9ccifj3qnfnkv1tjhl78tdo7ih3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
