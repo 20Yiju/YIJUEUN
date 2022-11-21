@@ -15,20 +15,16 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        fontFamily: 'Suit',
-        primarySwatch: Colors.blue,
-      ),
+      title: 'Shrine',
       initialRoute: '/login',
       routes: {
         '/login': (BuildContext context) => const LoginPage(),
         '/home2': (BuildContext context) => const Home2(),
-        '/home': (BuildContext context) => const HomePage(),
         '/addDiary': (BuildContext context) => const AddDiary(),
-      }
+        '/home': (BuildContext context) => const HomePage(),
+      },
     );
   }
 }

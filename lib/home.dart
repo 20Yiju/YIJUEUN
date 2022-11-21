@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'Login/login.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -38,14 +39,12 @@ class _HomePageState extends State<HomePage> {
                   ),
                   Container(
                     margin: const EdgeInsets.fromLTRB(0.0, 25.0, 0.0, 0.0),
-                    child: const Text(
-                      '안녕하세요, ' + '${snapshot.data?.displayName}님 :D',
-                    ),
+                    child: Text("${snapshot.data?.displayName}님 반갑습니다:D", style: const TextStyle(fontWeight: FontWeight.bold),),
                   ),
                 ],
               ),
             ],
-          ),
+          );
         };
 
         }

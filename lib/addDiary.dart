@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 
 class AddDiary extends StatelessWidget {
-  const AddStudy({Key? key}) : super(key: key);
+  const AddDiary({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,8 +44,7 @@ class AddStateWidget extends State<AddStatefulWidget> {
           title: const Text('새로운 일기장 만들기'),
           leading:  IconButton(
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (BuildContext context) => const Home())); //뒤로가기
+                //뒤로가기
               },
               color: Colors.white,
               icon: const Icon(Icons.arrow_back)),
@@ -160,7 +159,7 @@ class AddStateWidget extends State<AddStatefulWidget> {
                                     "hostName": inputController5.text,
                                     "member": 1,
                                   });*/
-                                  Navigator.pushNamed(context, '/home2'));
+                                  Navigator.pushNamed(context, '/home2');
                                 },
                                 child: const Text('등록',
                                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
