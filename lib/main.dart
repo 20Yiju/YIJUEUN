@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
         '/home2': (BuildContext context) => const Home2(),
         '/home': (BuildContext context) => const HomePage(),
         '/addDiary': (BuildContext context) => const AddDiary(),
+      }
     );
   }
 }
