@@ -41,6 +41,16 @@ class _HomePageState extends State<HomePage> {
                     margin: const EdgeInsets.fromLTRB(0.0, 25.0, 0.0, 0.0),
                     child: Text("${snapshot.data?.displayName}님 반갑습니다:D", style: const TextStyle(fontWeight: FontWeight.bold),),
                   ),
+                  const SizedBox(height: 200,),
+                  ElevatedButton(
+                    child: Text('일기장 만들기'),
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Color(0xff5784A1)),
+                    ),
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/addDiary');
+                    },
+                  ),
                 ],
               ),
             ],

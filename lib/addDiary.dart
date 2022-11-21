@@ -40,24 +40,32 @@ class AddStateWidget extends State<AddStatefulWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
-          title: const Text('새로운 일기장 만들기'),
+          title: const Text('새로운 일기장 만들기',
+            style: TextStyle(color: Color(0xff5784A1), fontWeight: FontWeight.bold),),
           leading:  IconButton(
               onPressed: () {
-                //뒤로가기
+                Navigator.pushNamed(context, '/home'); //이거 안먹음???
               },
-              color: Colors.white,
+              color: Color(0xff5784A1),
               icon: const Icon(Icons.arrow_back)),
-          backgroundColor: const Color(0xff485ed9),
+          backgroundColor: Color(0xffF3F6A3),
         ),
         body: Center(
             child: GestureDetector(
                 onTap: ()=> FocusScope.of(context).unfocus(),
                 child: SingleChildScrollView(
                     child: Column(
+                        //alignment: MainAxisAlignment.start,
                         children: [
+                          Image.network(
+                              'https://firebasestorage.googleapis.com/v0/b/yijueun-a1290.appspot.com/o/images%2Fhome_logo.jpeg?alt=media&token=cb09a7db-b289-4f14-a618-cb4914b1be08',
+                            height: 300,
+                            width: 300,
+                          ),
                           Padding(
-                            padding: const EdgeInsets.all(30.0),
+                            padding: const EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 30.0),
                             child: TextFormField(
                                 decoration: const InputDecoration(
                                   labelText: '일기장 제목',
@@ -76,7 +84,7 @@ class AddStateWidget extends State<AddStatefulWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.all(30.0),
+                            padding: const EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 30.0),
                             child: TextFormField(
                                 decoration: const InputDecoration(
                                   labelText: '일기장 설명',
@@ -95,7 +103,7 @@ class AddStateWidget extends State<AddStatefulWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.all(30.0),
+                            padding: const EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 30.0),
                             child: TextFormField(
                               decoration: const InputDecoration(
                                 labelText: '일기장 비밀번호',
@@ -126,7 +134,7 @@ class AddStateWidget extends State<AddStatefulWidget> {
                                   ),
                                   backgroundColor: MaterialStateProperty.all(
                                     //Color.fromARGB(255, 74, 170, 248)
-                                      const Color(0xff485ed9)
+                                      const Color(0xff5784A1)
                                   ),
                                 ),
 
