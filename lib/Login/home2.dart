@@ -12,6 +12,7 @@ class Home2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Color(0xffF3F6A3),
         body: StreamBuilder(
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (BuildContext context, AsyncSnapshot<User?> snapshot) {
@@ -20,6 +21,7 @@ class Home2 extends StatelessWidget {
             }
             else {
               return Center(
+
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -35,7 +37,7 @@ class Home2 extends StatelessWidget {
                       child: const Text('시작하기', style: TextStyle(color: Colors.indigo, fontWeight: FontWeight.bold),),
 
                       onPressed: () {
-                        Navigator.pushNamed(context, '/HomePage');
+                        Navigator.pushNamed(context, '/home');
                       },
                     ),
                   ],
