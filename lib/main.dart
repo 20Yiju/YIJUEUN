@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 
 import 'Login/home2.dart';
 import 'Login/login.dart';
+import 'addDiary.dart';
+import 'home.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-
   runApp(MyApp());
 }
 
@@ -25,9 +26,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/login': (BuildContext context) => const LoginPage(),
         '/home2': (BuildContext context) => const Home2(),
-        //'/home': (BuildContext context) => const Home()
-
-      },
+        '/home': (BuildContext context) => const HomePage(),
+        '/addDiary': (BuildContext context) => const AddDiary(),
     );
   }
 }

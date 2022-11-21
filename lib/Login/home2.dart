@@ -35,8 +35,7 @@ class Home2 extends StatelessWidget {
                       child: const Text('시작하기', style: TextStyle(color: Colors.indigo, fontWeight: FontWeight.bold),),
 
                       onPressed: () {
-                        /*Navigator.of(context).push(MaterialPageRoute(
-                            builder: (BuildContext context) => const Home()));*/
+                        Navigator.pushNamed(context, '/HomePage');
                       },
                     ),
                   ],
