@@ -51,6 +51,24 @@ class _HomePageState extends State<HomePage> {
                       Navigator.pushNamed(context, '/addDiary');
                     },
                   ),
+                  ElevatedButton(
+                    child: Text('일기장 입장'),
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Color(0xff5784A1)),
+                    ),
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/enterDiary');
+                    },
+                  ),
+                  ElevatedButton(
+                    child: Text('일기장 custom'),
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Color(0xff5784A1)),
+                    ),
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/editDiary');
+                    },
+                  ),
                 ],
               ),
             ],

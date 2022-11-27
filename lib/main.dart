@@ -5,6 +5,8 @@ import 'Login/home2.dart';
 import 'Login/login.dart';
 import 'addDiary.dart';
 import 'home.dart';
+import 'enterDiary.dart';
+import 'editDiary.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,6 +26,8 @@ class MyApp extends StatelessWidget {
         '/home2': (BuildContext context) => const Home2(),
         '/addDiary': (BuildContext context) => const AddDiary(),
         '/home': (BuildContext context) => const HomePage(),
+        '/enterDiary': (BuildContext context) => const EnterDiary(),
+        //'/editDiary': (BuildContext context) => const EditDiary(),
       },
     );
   }
