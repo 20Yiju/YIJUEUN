@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'Login/login.dart';
+import 'editDiary.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -66,7 +67,7 @@ class _HomePageState extends State<HomePage> {
                       backgroundColor: MaterialStateProperty.all(Color(0xff5784A1)),
                     ),
                     onPressed: () {
-                      Navigator.pushNamed(context, '/editDiary');
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => EditDiary('diary1')));
                     },
                   ),
                 ],
