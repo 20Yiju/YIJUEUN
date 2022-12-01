@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import 'package:intl/intl.dart';
 
 class AddDiary extends StatefulWidget {
   const AddDiary({Key? key}) : super(key: key);
@@ -18,6 +18,8 @@ class AddDiaryState extends State<AddDiary> {
   final _formKey = GlobalKey<FormState>();
 
 
+  //DateTime _date = DateTime.now();
+  String currentdate = DateFormat('yyyy-MM-dd').format(DateTime.now());
 
 
   @override
@@ -119,7 +121,9 @@ class AddDiaryState extends State<AddDiary> {
                             "diaryName": nameController.text,
                             "description": descriptionController.text,
                             "PW": PWController.text,
-
+                          });
+                          studyCollectionReference.collection("diaryList").doc(currentdate).set({
+                            'contents':'Hello~!',
                           });
                           Navigator.pushNamed(context, '/home');
                         }

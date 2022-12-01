@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'Login/login.dart';
 import 'editDiary.dart';
+import 'enterDiary.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -11,6 +12,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int currentIndex = 0;
+  final List<Widget> _children = [const HomePage(), const EnterDiary()];
 
   @override
   Widget build(BuildContext context) {
@@ -77,6 +80,45 @@ class _HomePageState extends State<HomePage> {
         };
 
         }
+      ),
+      /*bottomNavigationBar: BottomAppBar(
+        color: Color(0xff629E44),
+        child: Row(
+          children: [
+            IconButton(
+              icon: Icon(Icons.home_filled),
+              onPressed: () {},
+            ),
+          ],
+        ),color:
+      ),*/
+      bottomNavigationBar: Theme(
+        data: Theme.of(context).copyWith(canvasColor: Color(0xff629E44)),
+        child: BottomNavigationBar(
+          type: BottomNavigationBarType.shifting,
+          currentIndex: currentIndex,
+          onTap: (index) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => _children[index]),
+            );
+          },
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home, color:Colors.white,),
+              label: '홈',
+            ),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.search),
+                label: '검색'
+            ),
+
+          ],
+          selectedItemColor: Colors.white,
+          // selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),
+          unselectedItemColor: Colors.white,
+          showUnselectedLabels: true,
+        ),
       ),
     );
   }
