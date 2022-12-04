@@ -15,6 +15,8 @@ class LoginPage extends StatefulWidget {
   _LoginPageState createState() => _LoginPageState();
 }
 
+final userCollection = FirebaseFirestore.instance.collection('users');
+
 class _LoginPageState extends State<LoginPage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -28,21 +30,19 @@ class _LoginPageState extends State<LoginPage> {
       idToken: googleAuth?.idToken,
     );
 
-    /*final UserCredential authResult = await FirebaseAuth.instance.signInWithCredential(credential);
+    final authResult = await _auth.signInWithCredential(credential);
+    final user = authResult.user;
 
-    final String? uid = authResult.user?.uid;
-    final String? email = authResult.user?.email;
-    final String? name = authResult.user?.displayName;
-    final String? image = authResult.user?.photoURL;
-    final String? status_msg = "I promise to take the test honestly before GDO";
+    DocumentSnapshot documentSnapshot = await userCollection.doc(user?.uid).get();
+    if (!documentSnapshot.exists) {
+      print('@@ New google user!');
 
-    FirebaseFirestore.instance.collection('users').doc(uid).set({
-      'email' : email,
-      'name' : name,
-      'userId' : uid,
-      'image' : image
-    });*/
-
+      userCollection.doc(user?.uid).set({
+        'email': googleUser?.email,
+        'name': googleUser?.displayName,
+        'uid': user?.uid,
+      });
+    }
 
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
@@ -58,8 +58,8 @@ class _LoginPageState extends State<LoginPage> {
           children: <Widget>[
             const SizedBox(height: 50.0),
             Image.network("https://firebasestorage.googleapis.com/v0/b/yijueun-a1290.appspot.com/o/images%2Flogin.jpg?alt=media&token=c27f5ac0-99af-439a-9717-ea21a5ed55f8",
-            width: 400,
-            height: 400,),
+              width: 400,
+              height: 400,),
 
             const SizedBox(height: 70.0),
             ElevatedButton(
