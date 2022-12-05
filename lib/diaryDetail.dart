@@ -2,8 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
-import 'model/model_myDiary.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
+
 import 'writing.dart';
 import 'Login/login.dart';
 import 'enterDiary.dart';
@@ -79,8 +80,24 @@ class _DetailPageState extends State<DetailPage> {
   String currentdate = DateFormat('yyyy-MM-dd').format(DateTime.now());
   String createDate = DateFormat('yyyy.MM.dd (EEE)').format(DateTime.now()).toUpperCase();
 
+  String? _currentAddress;
+
+  void getLocation() async{
+    LocationPermission permission = await Geolocator.requestPermission();
+    Position position = await Geolocator.
+    getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    List<Placemark> place = await placemarkFromCoordinates(
+        position.latitude,
+        position.longitude);
+    Placemark place2 = place[0];
+    _currentAddress = "${place2.locality}, ${place2.country}";
+    //print(_currentAddress);
+
+  }
+
   @override
   Widget build(BuildContext context) {
+    getLocation();
     return MaterialApp(
       home: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -89,11 +106,11 @@ class _DetailPageState extends State<DetailPage> {
           backgroundColor: Colors.white,
           elevation: 0,
           leading:  IconButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/home');
-              },
-              icon: const Icon(Icons.arrow_back),
-              color: Colors.black,
+            onPressed: () {
+              Navigator.pushNamed(context, '/home');
+            },
+            icon: const Icon(Icons.arrow_back),
+            color: Colors.black,
           ),
           actions: <Widget>[
             IconButton(
@@ -113,6 +130,7 @@ class _DetailPageState extends State<DetailPage> {
                   diaryDocument.set({
                     'contents': '',
                     'date': createDate,
+                    'location': _currentAddress,
                   });
                 }
 
@@ -173,17 +191,17 @@ class _DetailPageState extends State<DetailPage> {
                           child: Column(
                             children: [
                               Container(
-                                alignment: Alignment.center,
-                                width: 300,
-                                height: 130,
-                                child: Text(
-                                  widget.diaryId,
-                                  style: TextStyle(
-                                    fontSize: 50.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                )
+                                  alignment: Alignment.center,
+                                  width: 300,
+                                  height: 130,
+                                  child: Text(
+                                    widget.diaryId,
+                                    style: TextStyle(
+                                      fontSize: 50.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  )
                               ),
                               SizedBox(height: 25,),
                               SizedBox(
