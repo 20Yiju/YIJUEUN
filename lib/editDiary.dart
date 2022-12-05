@@ -15,30 +15,14 @@ class EditDiaryState extends State<EditDiary> {
   late String diaryid;
   EditDiaryState(this.diaryid);
   late String url = 'https://firebasestorage.googleapis.com/v0/b/yijueun-a1290.appspot.com/o/images%2Fsquare.png?alt=media&token=b89c38f4-a869-4da7-a0e7-8f84ddb18040';
-
   BG _BG = BG.nothing;
   Color _color = Colors.white;
-
-  void setValue(snapshot){
-    //super.setValue;
-    //_color = Color(snapshot.data!['backgroundColor']);
-    //url = snapshot.data!['background'];
-    if(url == 'https://firebasestorage.googleapis.com/v0/b/yijueun-a1290.appspot.com/o/images%2Fsquare.png?alt=media&token=b89c38f4-a869-4da7-a0e7-8f84ddb18040'){
-      _BG  == BG.square;
-    }
-    else if(url == 'https://firebasestorage.googleapis.com/v0/b/yijueun-a1290.appspot.com/o/images%2Fline.png?alt=media&token=f7450f44-405e-41d6-b9e8-a1b9bcb80d22'){
-      _BG  == BG.line;
-    }
-    else if(url == 'https://firebasestorage.googleapis.com/v0/b/yijueun-a1290.appspot.com/o/images%2Fnothing.png?alt=media&token=a739b2a9-c9a7-4a25-9c0d-96b7ff2611a0'){
-      _BG  == BG.nothing;
-
-    }
-  }
 
 
   @override
   Widget build(BuildContext context) {
     final Stream<DocumentSnapshot> _usersStream = FirebaseFirestore.instance.collection('diary').doc(diaryid).snapshots();
+
 
     return StreamBuilder<DocumentSnapshot>(
         stream: _usersStream,
@@ -52,7 +36,6 @@ class EditDiaryState extends State<EditDiary> {
           if (!snapshot.data!.exists) {
             return const Text("");
           }
-          setValue(snapshot);
 
           return Scaffold(
             backgroundColor: Colors.white,

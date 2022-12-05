@@ -42,6 +42,7 @@ class _WritingPageState extends State<WritingPage> {
               }
 
               Map<String, dynamic> diary = _snapshot.data!.data() as Map<String, dynamic>;
+
               return StreamBuilder(
                 stream: _diaryListDocStream,
                 builder: (BuildContext context, snapshot_) {
@@ -70,6 +71,10 @@ class _WritingPageState extends State<WritingPage> {
                             fontWeight: FontWeight.bold,
                             color: Colors.black,
                           ),
+                        ),
+                        bottom: PreferredSize(
+                          child: Text("\u{1F4CD}" + diaryList['location']),
+                          preferredSize: Size.zero,
                         ),
                         leading:  IconButton(
                           onPressed: () {

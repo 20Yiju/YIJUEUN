@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:provider/provider.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
+
 import 'model/model_myDiary.dart';
 import 'Login/login.dart';
 import 'diaryDetail.dart';
 import 'enterDiary.dart';
 import 'model/model_diary.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -15,6 +20,22 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  late String _currentAddress;
+  void getLocation() async{
+    LocationPermission permission = await Geolocator.requestPermission();
+    Position position = await Geolocator.
+    getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    List<Placemark> place = await placemarkFromCoordinates(
+        position.latitude,
+        position.longitude);
+    Placemark place2 = place[0];
+    _currentAddress = "${place2.locality}, ${place2.country}";
+    //print(_currentAddress);
+
+  }
+
+
 
   List<Card> _buildListCards(BuildContext context, List<Diary> diaries) {
 
@@ -58,6 +79,7 @@ class _HomePageState extends State<HomePage> {
               color: Colors.red,
               icon: Icon(Icons.favorite),
               onPressed: () {
+                getLocation();
                 Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -85,12 +107,6 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.white,
         elevation: 0,
         automaticallyImplyLeading: false,
-        leading:  IconButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/home2'); //이거 안먹음???
-            },
-            color: Color(0xff5784A1),
-            icon: const Icon(Icons.logout)),
       ),
       bottomNavigationBar: Theme(
         data: Theme.of(context).copyWith(canvasColor: Color(0xff629E44)),
@@ -146,17 +162,16 @@ class _HomePageState extends State<HomePage> {
                             margin: const EdgeInsets.fromLTRB(0.0, 25.0, 0.0, 0.0),
                             child: Text("${snapshot.data?.displayName}님, 반갑습니다:D", style: const TextStyle(fontWeight: FontWeight.bold),),
                           ),
-
                           SizedBox(
-                            height: 400,
-                            child: GridView.count(
-                              scrollDirection: Axis.vertical,
-                              shrinkWrap: true,
-                              crossAxisCount: 1,
-                              padding: const EdgeInsets.all(25.0),
-                              childAspectRatio: 25.0 / 5.0,
-                              children: _buildListCards(context, myDiaryProvider.myDiaries),
-                            )
+                              height: 400,
+                              child: GridView.count(
+                                scrollDirection: Axis.vertical,
+                                shrinkWrap: true,
+                                crossAxisCount: 1,
+                                padding: const EdgeInsets.all(25.0),
+                                childAspectRatio: 25.0 / 5.0,
+                                children: _buildListCards(context, myDiaryProvider.myDiaries),
+                              )
                           ),
                           ElevatedButton(
                             child: Text(
