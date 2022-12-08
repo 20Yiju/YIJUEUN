@@ -21,22 +21,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  late String _currentAddress;
-  void getLocation() async{
-    LocationPermission permission = await Geolocator.requestPermission();
-    Position position = await Geolocator.
-    getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-    List<Placemark> place = await placemarkFromCoordinates(
-        position.latitude,
-        position.longitude);
-    Placemark place2 = place[0];
-    _currentAddress = "${place2.locality}, ${place2.country}";
-    //print(_currentAddress);
-
-  }
-
-
-
   List<Card> _buildListCards(BuildContext context, List<Diary> diaries) {
 
     return diaries.map((diary) {
@@ -79,7 +63,7 @@ class _HomePageState extends State<HomePage> {
               color: Colors.red,
               icon: Icon(Icons.favorite),
               onPressed: () {
-                getLocation();
+
                 Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -107,6 +91,12 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.white,
         elevation: 0,
         automaticallyImplyLeading: false,
+        leading: IconButton(icon: Icon(Icons.logout),color: Color(0xff629E44),
+          onPressed: () {
+            Navigator.pushNamed(context, '/home2');
+          },
+        ),
+
       ),
       bottomNavigationBar: Theme(
         data: Theme.of(context).copyWith(canvasColor: Color(0xff629E44)),
